@@ -3,43 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ALEXIA | International Model Management</title>
-    <meta name="description" content="ALEXIA represents the world's most iconic faces. International model management across New York, Paris, Milan, and London.">
+    <title>ALEXIA</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500&display=swap" rel="stylesheet">
     
     <style>
-        *, *::before, *::after {
+        * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
         :root {
-            --black: #000000;
-            --white: #ffffff;
-            --gray: #888;
-            --light: #f5f5f5;
-        }
-
-        html {
-            scroll-behavior: smooth;
+            --text: #1a1a1a;
+            --muted: #666;
+            --border: #e8e8e8;
+            --bg: #fff;
         }
 
         body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            font-weight: 300;
-            background: var(--black);
-            color: var(--white);
-            overflow-x: hidden;
-            cursor: default;
-        }
-
-        ::selection {
-            background: var(--white);
-            color: var(--black);
+            font-family: 'Instrument Sans', system-ui, -apple-system, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            font-size: 13px;
+            font-weight: 400;
+            -webkit-font-smoothing: antialiased;
         }
 
         a {
@@ -47,540 +37,263 @@
             text-decoration: none;
         }
 
-        /* Custom Cursor */
-        .cursor {
-            width: 20px;
-            height: 20px;
-            border: 1px solid var(--white);
-            border-radius: 50%;
-            position: fixed;
-            pointer-events: none;
-            z-index: 9999;
-            transition: transform 0.15s ease, opacity 0.15s ease;
-            mix-blend-mode: difference;
-        }
-
-        .cursor.hover {
-            transform: scale(2.5);
-        }
-
-        /* ========================================
-           NAVIGATION
-        ======================================== */
-        nav {
+        /* Header */
+        header {
             position: fixed;
             top: 0;
             left: 0;
             right: 0;
             z-index: 100;
-            padding: 30px 50px;
+            background: var(--bg);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .header-inner {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            mix-blend-mode: difference;
+            padding: 0 24px;
+            height: 60px;
         }
 
         .logo {
-            font-family: 'Bebas Neue', sans-serif;
-            font-size: 28px;
-            letter-spacing: 8px;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 40px;
-            list-style: none;
-        }
-
-        .nav-links a {
-            font-size: 11px;
+            font-size: 15px;
             font-weight: 500;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            opacity: 0.7;
-            transition: opacity 0.3s ease;
+            letter-spacing: 0.1em;
         }
 
-        .nav-links a:hover {
-            opacity: 1;
-        }
-
-        .menu-btn {
-            display: none;
-            font-size: 11px;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            cursor: pointer;
-        }
-
-        /* ========================================
-           HERO - FULL SCREEN VIDEO/IMAGE
-        ======================================== */
-        .hero {
-            height: 100vh;
-            width: 100%;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero-media {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            filter: grayscale(20%) contrast(1.1);
-        }
-
-        .hero-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(to bottom, 
-                rgba(0,0,0,0.3) 0%, 
-                rgba(0,0,0,0.1) 50%, 
-                rgba(0,0,0,0.7) 100%);
-        }
-
-        .hero-content {
-            position: absolute;
-            bottom: 100px;
-            left: 50px;
-            z-index: 2;
-        }
-
-        .hero-title {
-            font-family: 'Bebas Neue', sans-serif;
-            font-size: clamp(80px, 15vw, 200px);
-            letter-spacing: 15px;
-            line-height: 0.85;
-            margin-bottom: 20px;
-        }
-
-        .hero-subtitle {
-            font-size: 12px;
-            letter-spacing: 4px;
-            text-transform: uppercase;
-            opacity: 0.7;
-        }
-
-        .hero-model {
-            position: absolute;
-            bottom: 100px;
-            right: 50px;
-            text-align: right;
-        }
-
-        .hero-model-name {
-            font-family: 'Bebas Neue', sans-serif;
-            font-size: 24px;
-            letter-spacing: 3px;
-        }
-
-        .hero-model-campaign {
-            font-size: 11px;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            opacity: 0.6;
-        }
-
-        .scroll-indicator {
-            position: absolute;
-            bottom: 30px;
-            left: 50%;
-            transform: translateX(-50%);
-            font-size: 10px;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            opacity: 0.5;
-        }
-
-        .scroll-indicator::after {
-            content: '';
-            display: block;
-            width: 1px;
-            height: 50px;
-            background: var(--white);
-            margin: 15px auto 0;
-            animation: scrollPulse 2s ease-in-out infinite;
-        }
-
-        @keyframes scrollPulse {
-            0%, 100% { opacity: 1; height: 50px; }
-            50% { opacity: 0.3; height: 30px; }
-        }
-
-        /* ========================================
-           FEATURED CAMPAIGN SECTION
-        ======================================== */
-        .featured {
-            padding: 150px 50px;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 100px;
-            align-items: center;
-            max-width: 1600px;
-            margin: 0 auto;
-        }
-
-        .featured-image {
-            position: relative;
-            aspect-ratio: 3/4;
-            overflow: hidden;
-        }
-
-        .featured-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            filter: grayscale(30%);
-            transition: all 0.6s ease;
-        }
-
-        .featured-image:hover img {
-            filter: grayscale(0%);
-            transform: scale(1.03);
-        }
-
-        .featured-content {
-            padding: 50px 0;
-        }
-
-        .featured-label {
-            font-size: 10px;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            opacity: 0.5;
-            margin-bottom: 30px;
-        }
-
-        .featured-title {
-            font-family: 'Bebas Neue', sans-serif;
-            font-size: clamp(48px, 6vw, 100px);
-            letter-spacing: 5px;
-            line-height: 1;
-            margin-bottom: 30px;
-        }
-
-        .featured-desc {
-            font-size: 14px;
-            line-height: 1.8;
-            opacity: 0.7;
-            max-width: 400px;
-            margin-bottom: 40px;
-        }
-
-        .btn-view {
-            display: inline-flex;
-            align-items: center;
-            gap: 15px;
-            font-size: 11px;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            padding: 15px 0;
-            border-bottom: 1px solid rgba(255,255,255,0.3);
-            transition: all 0.3s ease;
-        }
-
-        .btn-view:hover {
-            border-color: var(--white);
-            gap: 25px;
-        }
-
-        .btn-view::after {
-            content: '→';
-        }
-
-        /* ========================================
-           MODELS GRID - EDITORIAL STYLE
-        ======================================== */
-        .models-section {
-            padding: 100px 0;
-        }
-
-        .section-header {
+        nav {
             display: flex;
-            justify-content: space-between;
-            align-items: flex-end;
-            padding: 0 50px;
-            margin-bottom: 60px;
+            gap: 32px;
         }
 
-        .section-title {
-            font-family: 'Bebas Neue', sans-serif;
-            font-size: clamp(40px, 5vw, 70px);
-            letter-spacing: 5px;
+        nav a {
+            color: var(--muted);
+            transition: color 0.2s;
+            letter-spacing: 0.02em;
         }
 
-        .section-link {
-            font-size: 11px;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            opacity: 0.6;
-            transition: opacity 0.3s ease;
+        nav a:hover,
+        nav a.active {
+            color: var(--text);
         }
 
-        .section-link:hover {
-            opacity: 1;
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 8px;
         }
 
+        .menu-toggle svg {
+            width: 20px;
+            height: 20px;
+        }
+
+        /* Main */
+        main {
+            padding-top: 60px;
+        }
+
+        /* Models Grid */
         .models-grid {
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 2px;
+            grid-template-columns: repeat(5, 1fr);
         }
 
-        .model-card {
+        .model-item {
             position: relative;
             aspect-ratio: 3/4;
             overflow: hidden;
-            cursor: pointer;
         }
 
-        .model-card img {
+        .model-item img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            filter: grayscale(40%);
-            transition: all 0.5s ease;
-        }
-
-        .model-card:hover img {
-            filter: grayscale(0%);
-            transform: scale(1.05);
-        }
-
-        .model-info {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            padding: 40px 25px;
-            background: linear-gradient(transparent, rgba(0,0,0,0.9));
-            transform: translateY(100%);
             transition: transform 0.4s ease;
         }
 
-        .model-card:hover .model-info {
-            transform: translateY(0);
+        .model-item:hover img {
+            transform: scale(1.02);
         }
 
         .model-name {
-            font-family: 'Bebas Neue', sans-serif;
-            font-size: 28px;
-            letter-spacing: 3px;
-            margin-bottom: 5px;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 20px 16px;
+            background: linear-gradient(transparent, rgba(0,0,0,0.5));
+            color: #fff;
+            font-size: 12px;
+            letter-spacing: 0.08em;
+            opacity: 0;
+            transition: opacity 0.3s;
         }
 
-        .model-agency {
-            font-size: 10px;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            opacity: 0.6;
+        .model-item:hover .model-name {
+            opacity: 1;
         }
 
-        /* ========================================
-           HORIZONTAL SCROLL CAMPAIGNS
-        ======================================== */
-        .campaigns {
-            padding: 150px 0;
-            overflow: hidden;
-        }
-
-        .campaigns-header {
-            padding: 0 50px;
-            margin-bottom: 60px;
-        }
-
-        .campaigns-track {
+        /* Category Tabs */
+        .category-bar {
             display: flex;
-            gap: 30px;
-            padding: 0 50px;
-            cursor: grab;
+            gap: 24px;
+            padding: 16px 24px;
+            border-bottom: 1px solid var(--border);
             overflow-x: auto;
-            scrollbar-width: none;
-            -ms-overflow-style: none;
+            -webkit-overflow-scrolling: touch;
         }
 
-        .campaigns-track::-webkit-scrollbar {
+        .category-bar::-webkit-scrollbar {
             display: none;
         }
 
-        .campaign-slide {
-            flex: 0 0 auto;
-            width: 45vw;
-            max-width: 700px;
+        .category-tab {
+            color: var(--muted);
+            white-space: nowrap;
+            transition: color 0.2s;
+            cursor: pointer;
+            background: none;
+            border: none;
+            font: inherit;
+            letter-spacing: 0.02em;
         }
 
-        .campaign-image {
-            aspect-ratio: 16/10;
-            overflow: hidden;
-            margin-bottom: 25px;
+        .category-tab:hover,
+        .category-tab.active {
+            color: var(--text);
         }
 
-        .campaign-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            filter: grayscale(20%);
-            transition: all 0.5s ease;
-        }
-
-        .campaign-slide:hover .campaign-image img {
-            filter: grayscale(0%);
-            transform: scale(1.03);
-        }
-
-        .campaign-brand {
-            font-family: 'Bebas Neue', sans-serif;
-            font-size: 32px;
-            letter-spacing: 3px;
-            margin-bottom: 5px;
-        }
-
-        .campaign-season {
-            font-size: 11px;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            opacity: 0.5;
-        }
-
-        /* ========================================
-           LARGE IMAGE BREAK
-        ======================================== */
-        .image-break {
-            height: 100vh;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .image-break img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            filter: grayscale(20%);
-        }
-
-        .image-break-overlay {
-            position: absolute;
+        /* Model Detail Overlay */
+        .model-overlay {
+            position: fixed;
             top: 0;
             left: 0;
             right: 0;
             bottom: 0;
-            background: rgba(0,0,0,0.4);
+            background: var(--bg);
+            z-index: 200;
+            display: none;
+            overflow-y: auto;
+        }
+
+        .model-overlay.active {
+            display: block;
+        }
+
+        .overlay-header {
+            position: sticky;
+            top: 0;
             display: flex;
+            justify-content: space-between;
             align-items: center;
-            justify-content: center;
+            padding: 20px 24px;
+            background: var(--bg);
+            border-bottom: 1px solid var(--border);
         }
 
-        .image-break-text {
-            text-align: center;
+        .overlay-close {
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 8px;
+            color: var(--text);
         }
 
-        .image-break-quote {
-            font-family: 'Bebas Neue', sans-serif;
-            font-size: clamp(40px, 8vw, 120px);
-            letter-spacing: 10px;
-            line-height: 1.1;
-            max-width: 1200px;
+        .overlay-close svg {
+            width: 20px;
+            height: 20px;
         }
 
-        /* ========================================
-           STATS MARQUEE
-        ======================================== */
-        .stats-marquee {
-            padding: 80px 0;
-            border-top: 1px solid rgba(255,255,255,0.1);
-            border-bottom: 1px solid rgba(255,255,255,0.1);
-            overflow: hidden;
-        }
-
-        .marquee-track {
-            display: flex;
-            animation: marquee 30s linear infinite;
-        }
-
-        .marquee-item {
-            flex: 0 0 auto;
-            padding: 0 80px;
-            display: flex;
-            align-items: baseline;
-            gap: 15px;
-        }
-
-        .marquee-number {
-            font-family: 'Bebas Neue', sans-serif;
-            font-size: 60px;
-            letter-spacing: 2px;
-        }
-
-        .marquee-label {
-            font-size: 11px;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            opacity: 0.5;
-        }
-
-        @keyframes marquee {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
-        }
-
-        /* ========================================
-           LOCATIONS
-        ======================================== */
-        .locations {
-            padding: 150px 50px;
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
-        .locations-grid {
+        .model-detail {
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 50px;
-            margin-top: 80px;
+            grid-template-columns: 1fr 400px;
+            min-height: calc(100vh - 61px);
         }
 
-        .location-item h3 {
-            font-family: 'Bebas Neue', sans-serif;
-            font-size: 28px;
-            letter-spacing: 3px;
-            margin-bottom: 15px;
+        .model-gallery {
+            padding: 24px;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 8px;
+            align-content: start;
         }
 
-        .location-item p {
-            font-size: 13px;
-            line-height: 1.8;
-            opacity: 0.5;
+        .model-gallery img {
+            width: 100%;
+            aspect-ratio: 3/4;
+            object-fit: cover;
         }
 
-        .location-item a {
-            display: inline-block;
-            margin-top: 20px;
+        .model-gallery img:first-child {
+            grid-column: span 2;
+            aspect-ratio: 4/5;
+        }
+
+        .model-info {
+            padding: 40px;
+            border-left: 1px solid var(--border);
+        }
+
+        .model-info h1 {
+            font-size: 24px;
+            font-weight: 400;
+            letter-spacing: 0.05em;
+            margin-bottom: 32px;
+        }
+
+        .model-stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px;
+            margin-bottom: 40px;
+        }
+
+        .stat-item {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .stat-label {
+            color: var(--muted);
             font-size: 11px;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            opacity: 0.7;
-            transition: opacity 0.3s ease;
+            letter-spacing: 0.05em;
         }
 
-        .location-item a:hover {
-            opacity: 1;
+        .stat-value {
+            font-size: 14px;
         }
 
-        /* ========================================
-           FOOTER
-        ======================================== */
+        .model-contact {
+            padding-top: 24px;
+            border-top: 1px solid var(--border);
+        }
+
+        .contact-btn {
+            display: inline-block;
+            padding: 12px 24px;
+            border: 1px solid var(--text);
+            font-size: 12px;
+            letter-spacing: 0.05em;
+            transition: all 0.2s;
+        }
+
+        .contact-btn:hover {
+            background: var(--text);
+            color: var(--bg);
+        }
+
+        /* Footer */
         footer {
-            padding: 80px 50px;
-            border-top: 1px solid rgba(255,255,255,0.1);
+            padding: 40px 24px;
+            border-top: 1px solid var(--border);
         }
 
-        .footer-content {
+        .footer-inner {
             display: flex;
             justify-content: space-between;
             align-items: flex-start;
@@ -589,370 +302,318 @@
         }
 
         .footer-logo {
-            font-family: 'Bebas Neue', sans-serif;
-            font-size: 32px;
-            letter-spacing: 8px;
+            font-size: 14px;
+            font-weight: 500;
+            letter-spacing: 0.1em;
         }
 
         .footer-links {
             display: flex;
-            gap: 60px;
+            gap: 48px;
         }
 
-        .footer-column h4 {
-            font-size: 10px;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            opacity: 0.5;
-            margin-bottom: 20px;
-        }
-
-        .footer-column ul {
-            list-style: none;
-        }
-
-        .footer-column li {
-            margin-bottom: 10px;
-        }
-
-        .footer-column a {
-            font-size: 13px;
-            opacity: 0.7;
-            transition: opacity 0.3s ease;
-        }
-
-        .footer-column a:hover {
-            opacity: 1;
-        }
-
-        .footer-bottom {
-            margin-top: 80px;
-            padding-top: 30px;
-            border-top: 1px solid rgba(255,255,255,0.1);
-            display: flex;
-            justify-content: space-between;
+        .footer-col h4 {
             font-size: 11px;
-            opacity: 0.4;
-            max-width: 1400px;
-            margin-left: auto;
-            margin-right: auto;
+            font-weight: 500;
+            letter-spacing: 0.05em;
+            color: var(--muted);
+            margin-bottom: 16px;
         }
 
-        /* ========================================
-           MOBILE RESPONSIVE
-        ======================================== */
-        @media (max-width: 1024px) {
-            nav { padding: 20px 30px; }
-            .nav-links { display: none; }
-            .menu-btn { display: block; }
-            
-            .hero-content { left: 30px; bottom: 80px; }
-            .hero-model { right: 30px; bottom: 80px; }
-            
-            .featured {
-                grid-template-columns: 1fr;
-                gap: 50px;
-                padding: 100px 30px;
-            }
-            
-            .models-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            
-            .campaign-slide {
-                width: 80vw;
-            }
-            
-            .locations-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            
-            .section-header { padding: 0 30px; }
-            .campaigns-header { padding: 0 30px; }
-            .campaigns-track { padding: 0 30px; }
+        .footer-col ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
         }
 
-        @media (max-width: 768px) {
-            .hero-title { letter-spacing: 8px; }
-            .hero-model { display: none; }
-            
+        .footer-col a {
+            color: var(--muted);
+            transition: color 0.2s;
+        }
+
+        .footer-col a:hover {
+            color: var(--text);
+        }
+
+        .footer-copy {
+            margin-top: 48px;
+            color: var(--muted);
+            font-size: 11px;
+        }
+
+        /* Responsive */
+        @media (max-width: 1200px) {
             .models-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+
+        @media (max-width: 900px) {
+            .models-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            
+            .model-detail {
                 grid-template-columns: 1fr;
             }
             
             .model-info {
-                transform: translateY(0);
-                background: linear-gradient(transparent 50%, rgba(0,0,0,0.95));
+                border-left: none;
+                border-top: 1px solid var(--border);
             }
             
-            .locations-grid {
-                grid-template-columns: 1fr;
-                gap: 40px;
-            }
-            
-            .footer-content {
+            .footer-inner {
                 flex-direction: column;
-                gap: 50px;
+                gap: 32px;
+            }
+        }
+
+        @media (max-width: 640px) {
+            nav {
+                display: none;
+            }
+            
+            .menu-toggle {
+                display: block;
+            }
+            
+            .models-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .model-gallery {
+                grid-template-columns: 1fr;
+            }
+            
+            .model-gallery img:first-child {
+                grid-column: span 1;
             }
             
             .footer-links {
                 flex-direction: column;
-                gap: 40px;
+                gap: 24px;
             }
-            
-            .footer-bottom {
-                flex-direction: column;
-                gap: 10px;
-            }
-
-            .locations { padding: 100px 30px; }
-            footer { padding: 60px 30px; }
         }
 
-        /* Hide cursor on mobile */
-        @media (hover: none) {
-            .cursor { display: none; }
+        /* Mobile menu */
+        .mobile-menu {
+            position: fixed;
+            top: 60px;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: var(--bg);
+            z-index: 99;
+            padding: 24px;
+            display: none;
+        }
+
+        .mobile-menu.active {
+            display: block;
+        }
+
+        .mobile-menu a {
+            display: block;
+            padding: 12px 0;
+            border-bottom: 1px solid var(--border);
+            font-size: 16px;
         }
     </style>
 </head>
 <body>
-    <div class="cursor" id="cursor"></div>
+    <header>
+        <div class="header-inner">
+            <a href="#" class="logo">ALEXIA</a>
+            <nav>
+                <a href="#" class="active">Women</a>
+                <a href="#">Men</a>
+                <a href="#">Non-Binary</a>
+                <a href="#">About</a>
+                <a href="#">Contact</a>
+            </nav>
+            <button class="menu-toggle" onclick="toggleMenu()">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <line x1="3" y1="6" x2="21" y2="6"/>
+                    <line x1="3" y1="12" x2="21" y2="12"/>
+                    <line x1="3" y1="18" x2="21" y2="18"/>
+                </svg>
+            </button>
+        </div>
+    </header>
 
-    <!-- Navigation -->
-    <nav>
-        <a href="#" class="logo">ALEXIA</a>
-        <ul class="nav-links">
-            <li><a href="#models">Models</a></li>
-            <li><a href="#campaigns">Campaigns</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#locations">Contact</a></li>
-        </ul>
-        <div class="menu-btn">Menu</div>
-    </nav>
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="#">Women</a>
+        <a href="#">Men</a>
+        <a href="#">Non-Binary</a>
+        <a href="#">About</a>
+        <a href="#">Contact</a>
+    </div>
 
-    <!-- Hero Section - Taylor Hill Campaign Image -->
-    <section class="hero">
-        <img src="https://images.unsplash.com/photo-1469334031218-e382a71b716b?w=1920&q=85" alt="Fashion Campaign" class="hero-media">
-        <div class="hero-overlay"></div>
-        <div class="hero-content">
-            <h1 class="hero-title">ALEXIA</h1>
-            <p class="hero-subtitle">International Model Management</p>
+    <main>
+        <div class="category-bar">
+            <button class="category-tab active">All</button>
+            <button class="category-tab">Mainboard</button>
+            <button class="category-tab">Development</button>
+            <button class="category-tab">Runway</button>
+            <button class="category-tab">Commercial</button>
+            <button class="category-tab">Curve</button>
         </div>
-        <div class="hero-model">
-            <p class="hero-model-name">VERSACE SS26</p>
-            <p class="hero-model-campaign">Milan Fashion Week</p>
-        </div>
-        <div class="scroll-indicator">Scroll</div>
-    </section>
 
-    <!-- Featured Campaign -->
-    <section class="featured">
-        <div class="featured-image">
-            <img src="https://images.unsplash.com/photo-1504703395950-b89145a5425b?w=1200&q=85" alt="Editorial">
-        </div>
-        <div class="featured-content">
-            <p class="featured-label">Latest Campaign</p>
-            <h2 class="featured-title">DIOR<br>HAUTE COUTURE<br>SS26</h2>
-            <p class="featured-desc">
-                Our exclusive representation for the Dior Haute Couture Spring/Summer 2026 collection. 
-                Featuring eight of our leading models on the Paris runway.
-            </p>
-            <a href="#" class="btn-view">View Campaign</a>
-        </div>
-    </section>
-
-    <!-- Models Grid -->
-    <section class="models-section" id="models">
-        <div class="section-header">
-            <h2 class="section-title">FEATURED TALENT</h2>
-            <a href="#" class="section-link">View All Models →</a>
-        </div>
         <div class="models-grid">
-            <div class="model-card">
-                <img src="https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?w=800&q=85" alt="Model">
-                <div class="model-info">
-                    <h3 class="model-name">TAYLOR HILL</h3>
-                    <p class="model-agency">New York • Paris • Milan</p>
-                </div>
+            <div class="model-item" onclick="openModel(this)">
+                <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=600&q=85" alt="Model">
+                <div class="model-name">TAYLOR HILL</div>
             </div>
-            <div class="model-card">
-                <img src="https://images.unsplash.com/photo-1502823403499-6ccfcf4fb453?w=800&q=85" alt="Model">
-                <div class="model-info">
-                    <h3 class="model-name">ADUT AKECH</h3>
-                    <p class="model-agency">Paris • London</p>
-                </div>
+            <div class="model-item" onclick="openModel(this)">
+                <img src="https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?w=600&q=85" alt="Model">
+                <div class="model-name">BELLA HADID</div>
             </div>
-            <div class="model-card">
-                <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=800&q=85" alt="Model">
-                <div class="model-info">
-                    <h3 class="model-name">GIGI HADID</h3>
-                    <p class="model-agency">New York • Paris • Milan</p>
-                </div>
+            <div class="model-item" onclick="openModel(this)">
+                <img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=600&q=85" alt="Model">
+                <div class="model-name">GIGI HADID</div>
             </div>
-            <div class="model-card">
-                <img src="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=800&q=85" alt="Model">
-                <div class="model-info">
-                    <h3 class="model-name">VITTORIA CERETTI</h3>
-                    <p class="model-agency">Milan • Paris</p>
-                </div>
+            <div class="model-item" onclick="openModel(this)">
+                <img src="https://images.unsplash.com/photo-1502823403499-6ccfcf4fb453?w=600&q=85" alt="Model">
+                <div class="model-name">ADUT AKECH</div>
             </div>
-            <div class="model-card">
-                <img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=800&q=85" alt="Model">
-                <div class="model-info">
-                    <h3 class="model-name">BELLA HADID</h3>
-                    <p class="model-agency">New York • Paris • Milan</p>
-                </div>
+            <div class="model-item" onclick="openModel(this)">
+                <img src="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=600&q=85" alt="Model">
+                <div class="model-name">VITTORIA CERETTI</div>
             </div>
-            <div class="model-card">
-                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&q=85" alt="Model">
-                <div class="model-info">
-                    <h3 class="model-name">LEON DAME</h3>
-                    <p class="model-agency">Paris • Berlin</p>
-                </div>
+            <div class="model-item" onclick="openModel(this)">
+                <img src="https://images.unsplash.com/photo-1488426862026-3ee34a7d66df?w=600&q=85" alt="Model">
+                <div class="model-name">KENDALL JENNER</div>
             </div>
-            <div class="model-card">
-                <img src="https://images.unsplash.com/photo-1488426862026-3ee34a7d66df?w=800&q=85" alt="Model">
-                <div class="model-info">
-                    <h3 class="model-name">KENDALL JENNER</h3>
-                    <p class="model-agency">New York • Los Angeles</p>
-                </div>
+            <div class="model-item" onclick="openModel(this)">
+                <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?w=600&q=85" alt="Model">
+                <div class="model-name">IMAAN HAMMAM</div>
             </div>
-            <div class="model-card">
-                <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=800&q=85" alt="Model">
-                <div class="model-info">
-                    <h3 class="model-name">IMAAN HAMMAM</h3>
-                    <p class="model-agency">New York • Amsterdam</p>
-                </div>
+            <div class="model-item" onclick="openModel(this)">
+                <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=600&q=85" alt="Model">
+                <div class="model-name">KARLIE KLOSS</div>
+            </div>
+            <div class="model-item" onclick="openModel(this)">
+                <img src="https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=600&q=85" alt="Model">
+                <div class="model-name">LUCKY BLUE SMITH</div>
+            </div>
+            <div class="model-item" onclick="openModel(this)">
+                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&q=85" alt="Model">
+                <div class="model-name">LEON DAME</div>
+            </div>
+            <div class="model-item" onclick="openModel(this)">
+                <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=600&q=85" alt="Model">
+                <div class="model-name">ERIK VAN GILS</div>
+            </div>
+            <div class="model-item" onclick="openModel(this)">
+                <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=600&q=85" alt="Model">
+                <div class="model-name">ALTON MASON</div>
+            </div>
+            <div class="model-item" onclick="openModel(this)">
+                <img src="https://images.unsplash.com/photo-1496440737103-cd596325d314?w=600&q=85" alt="Model">
+                <div class="model-name">CANDICE SWANEPOEL</div>
+            </div>
+            <div class="model-item" onclick="openModel(this)">
+                <img src="https://images.unsplash.com/photo-1464863979621-258859e62245?w=600&q=85" alt="Model">
+                <div class="model-name">DOUTZEN KROES</div>
+            </div>
+            <div class="model-item" onclick="openModel(this)">
+                <img src="https://images.unsplash.com/photo-1485893086445-ed75865251e0?w=600&q=85" alt="Model">
+                <div class="model-name">CARA DELEVINGNE</div>
+            </div>
+            <div class="model-item" onclick="openModel(this)">
+                <img src="https://images.unsplash.com/photo-1531123897727-8f129e1688ce?w=600&q=85" alt="Model">
+                <div class="model-name">NAOMI CAMPBELL</div>
+            </div>
+            <div class="model-item" onclick="openModel(this)">
+                <img src="https://images.unsplash.com/photo-1507591064344-4c6ce005b128?w=600&q=85" alt="Model">
+                <div class="model-name">PALOMA ELSESSER</div>
+            </div>
+            <div class="model-item" onclick="openModel(this)">
+                <img src="https://images.unsplash.com/photo-1513956589380-bad6acb9b9d4?w=600&q=85" alt="Model">
+                <div class="model-name">JON KORTAJARENA</div>
+            </div>
+            <div class="model-item" onclick="openModel(this)">
+                <img src="https://images.unsplash.com/photo-1492106087820-71f1a00d2b11?w=600&q=85" alt="Model">
+                <div class="model-name">EMILY RATAJKOWSKI</div>
+            </div>
+            <div class="model-item" onclick="openModel(this)">
+                <img src="https://images.unsplash.com/photo-1521577352947-9bb58764b69a?w=600&q=85" alt="Model">
+                <div class="model-name">KAIA GERBER</div>
             </div>
         </div>
-    </section>
+    </main>
 
-    <!-- Horizontal Scroll Campaigns -->
-    <section class="campaigns" id="campaigns">
-        <div class="campaigns-header">
-            <h2 class="section-title">RECENT CAMPAIGNS</h2>
+    <!-- Model Detail Overlay -->
+    <div class="model-overlay" id="modelOverlay">
+        <div class="overlay-header">
+            <span class="logo">ALEXIA</span>
+            <button class="overlay-close" onclick="closeModel()">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <line x1="18" y1="6" x2="6" y2="18"/>
+                    <line x1="6" y1="6" x2="18" y2="18"/>
+                </svg>
+            </button>
         </div>
-        <div class="campaigns-track">
-            <div class="campaign-slide">
-                <div class="campaign-image">
-                    <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1200&q=85" alt="Campaign">
-                </div>
-                <h3 class="campaign-brand">CHANEL</h3>
-                <p class="campaign-season">Fall/Winter 2026</p>
+        <div class="model-detail">
+            <div class="model-gallery" id="modelGallery">
+                <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=1200&q=85" alt="">
+                <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=600&q=85" alt="">
+                <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=600&q=85" alt="">
+                <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=600&q=85" alt="">
+                <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=600&q=85" alt="">
             </div>
-            <div class="campaign-slide">
-                <div class="campaign-image">
-                    <img src="https://images.unsplash.com/photo-1509631179647-0177331693ae?w=1200&q=85" alt="Campaign">
+            <div class="model-info">
+                <h1 id="modelName">TAYLOR HILL</h1>
+                <div class="model-stats">
+                    <div class="stat-item">
+                        <span class="stat-label">Height</span>
+                        <span class="stat-value">178 cm / 5'10"</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Bust</span>
+                        <span class="stat-value">81 cm / 32"</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Waist</span>
+                        <span class="stat-value">59 cm / 23"</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Hips</span>
+                        <span class="stat-value">86 cm / 34"</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Shoes</span>
+                        <span class="stat-value">EU 40 / US 9</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Eyes</span>
+                        <span class="stat-value">Hazel</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Hair</span>
+                        <span class="stat-value">Brown</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Location</span>
+                        <span class="stat-value">New York</span>
+                    </div>
                 </div>
-                <h3 class="campaign-brand">SAINT LAURENT</h3>
-                <p class="campaign-season">Resort 2026</p>
-            </div>
-            <div class="campaign-slide">
-                <div class="campaign-image">
-                    <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=1200&q=85" alt="Campaign">
+                <div class="model-contact">
+                    <a href="mailto:booking@alexia.agency" class="contact-btn">Request Portfolio</a>
                 </div>
-                <h3 class="campaign-brand">VERSACE</h3>
-                <p class="campaign-season">Spring/Summer 2026</p>
-            </div>
-            <div class="campaign-slide">
-                <div class="campaign-image">
-                    <img src="https://images.unsplash.com/photo-1483985988355-763728e1935b?w=1200&q=85" alt="Campaign">
-                </div>
-                <h3 class="campaign-brand">GUCCI</h3>
-                <p class="campaign-season">Cruise 2026</p>
-            </div>
-            <div class="campaign-slide">
-                <div class="campaign-image">
-                    <img src="https://images.unsplash.com/photo-1558171813-4c088753af8f?w=1200&q=85" alt="Campaign">
-                </div>
-                <h3 class="campaign-brand">PRADA</h3>
-                <p class="campaign-season">Fall/Winter 2026</p>
             </div>
         </div>
-    </section>
+    </div>
 
-    <!-- Large Image Break -->
-    <section class="image-break">
-        <img src="https://images.unsplash.com/photo-1445205170230-053b83016050?w=1920&q=85" alt="Fashion">
-        <div class="image-break-overlay">
-            <div class="image-break-text">
-                <p class="image-break-quote">WE DON'T<br>FOLLOW TRENDS<br>WE CREATE THEM</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Stats Marquee -->
-    <section class="stats-marquee">
-        <div class="marquee-track">
-            <div class="marquee-item">
-                <span class="marquee-number">250+</span>
-                <span class="marquee-label">Models Represented</span>
-            </div>
-            <div class="marquee-item">
-                <span class="marquee-number">48</span>
-                <span class="marquee-label">Fashion Weeks</span>
-            </div>
-            <div class="marquee-item">
-                <span class="marquee-number">500+</span>
-                <span class="marquee-label">Brand Partners</span>
-            </div>
-            <div class="marquee-item">
-                <span class="marquee-number">4</span>
-                <span class="marquee-label">Global Offices</span>
-            </div>
-            <div class="marquee-item">
-                <span class="marquee-number">250+</span>
-                <span class="marquee-label">Models Represented</span>
-            </div>
-            <div class="marquee-item">
-                <span class="marquee-number">48</span>
-                <span class="marquee-label">Fashion Weeks</span>
-            </div>
-            <div class="marquee-item">
-                <span class="marquee-number">500+</span>
-                <span class="marquee-label">Brand Partners</span>
-            </div>
-            <div class="marquee-item">
-                <span class="marquee-number">4</span>
-                <span class="marquee-label">Global Offices</span>
-            </div>
-        </div>
-    </section>
-
-    <!-- Locations -->
-    <section class="locations" id="locations">
-        <h2 class="section-title">GLOBAL PRESENCE</h2>
-        <div class="locations-grid">
-            <div class="location-item">
-                <h3>NEW YORK</h3>
-                <p>304 Park Avenue South<br>12th Floor<br>New York, NY 10010</p>
-                <a href="mailto:ny@alexia.agency">ny@alexia.agency</a>
-            </div>
-            <div class="location-item">
-                <h3>PARIS</h3>
-                <p>40 Rue du Faubourg<br>Saint-Honoré<br>75008 Paris</p>
-                <a href="mailto:paris@alexia.agency">paris@alexia.agency</a>
-            </div>
-            <div class="location-item">
-                <h3>MILAN</h3>
-                <p>Via della Spiga, 26<br>20121 Milano</p>
-                <a href="mailto:milan@alexia.agency">milan@alexia.agency</a>
-            </div>
-            <div class="location-item">
-                <h3>LONDON</h3>
-                <p>28 Savile Row<br>Mayfair<br>London W1S 3PR</p>
-                <a href="mailto:london@alexia.agency">london@alexia.agency</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
     <footer>
-        <div class="footer-content">
-            <div class="footer-logo">ALEXIA</div>
+        <div class="footer-inner">
+            <div>
+                <div class="footer-logo">ALEXIA</div>
+            </div>
             <div class="footer-links">
-                <div class="footer-column">
-                    <h4>Models</h4>
+                <div class="footer-col">
+                    <h4>Divisions</h4>
                     <ul>
                         <li><a href="#">Women</a></li>
                         <li><a href="#">Men</a></li>
@@ -960,106 +621,72 @@
                         <li><a href="#">Curve</a></li>
                     </ul>
                 </div>
-                <div class="footer-column">
-                    <h4>Services</h4>
+                <div class="footer-col">
+                    <h4>Offices</h4>
                     <ul>
-                        <li><a href="#">Fashion</a></li>
-                        <li><a href="#">Commercial</a></li>
-                        <li><a href="#">Editorial</a></li>
-                        <li><a href="#">Runway</a></li>
+                        <li><a href="#">New York</a></li>
+                        <li><a href="#">Paris</a></li>
+                        <li><a href="#">Milan</a></li>
+                        <li><a href="#">London</a></li>
                     </ul>
                 </div>
-                <div class="footer-column">
-                    <h4>Company</h4>
-                    <ul>
-                        <li><a href="#">About</a></li>
-                        <li><a href="#">Careers</a></li>
-                        <li><a href="#">Press</a></li>
-                        <li><a href="#">Contact</a></li>
-                    </ul>
-                </div>
-                <div class="footer-column">
-                    <h4>Social</h4>
+                <div class="footer-col">
+                    <h4>Connect</h4>
                     <ul>
                         <li><a href="#">Instagram</a></li>
                         <li><a href="#">TikTok</a></li>
-                        <li><a href="#">YouTube</a></li>
                         <li><a href="#">LinkedIn</a></li>
                     </ul>
                 </div>
             </div>
         </div>
-        <div class="footer-bottom">
-            <p>© 2026 ALEXIA Model Management. All Rights Reserved.</p>
-            <p>Privacy Policy • Terms of Service</p>
-        </div>
+        <p class="footer-copy">© 2026 ALEXIA. All rights reserved.</p>
     </footer>
 
     <script>
-        // Custom cursor
-        const cursor = document.getElementById('cursor');
-        let mouseX = 0, mouseY = 0;
-        let cursorX = 0, cursorY = 0;
-
-        document.addEventListener('mousemove', (e) => {
-            mouseX = e.clientX;
-            mouseY = e.clientY;
-        });
-
-        function animateCursor() {
-            cursorX += (mouseX - cursorX) * 0.1;
-            cursorY += (mouseY - cursorY) * 0.1;
-            cursor.style.left = cursorX - 10 + 'px';
-            cursor.style.top = cursorY - 10 + 'px';
-            requestAnimationFrame(animateCursor);
+        function toggleMenu() {
+            document.getElementById('mobileMenu').classList.toggle('active');
         }
-        animateCursor();
 
-        // Cursor hover effect
-        document.querySelectorAll('a, button, .model-card, .campaign-slide').forEach(el => {
-            el.addEventListener('mouseenter', () => cursor.classList.add('hover'));
-            el.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
+        function openModel(el) {
+            const name = el.querySelector('.model-name').textContent;
+            const img = el.querySelector('img').src;
+            
+            document.getElementById('modelName').textContent = name;
+            
+            // Update gallery images
+            const gallery = document.getElementById('modelGallery');
+            const imgs = gallery.querySelectorAll('img');
+            imgs.forEach(i => i.src = img);
+            
+            document.getElementById('modelOverlay').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModel() {
+            document.getElementById('modelOverlay').classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        // Close on escape
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closeModel();
         });
 
-        // Horizontal scroll drag
-        const track = document.querySelector('.campaigns-track');
-        let isDown = false;
-        let startX;
-        let scrollLeft;
-
-        track.addEventListener('mousedown', (e) => {
-            isDown = true;
-            track.style.cursor = 'grabbing';
-            startX = e.pageX - track.offsetLeft;
-            scrollLeft = track.scrollLeft;
+        // Category tabs
+        document.querySelectorAll('.category-tab').forEach(tab => {
+            tab.addEventListener('click', function() {
+                document.querySelectorAll('.category-tab').forEach(t => t.classList.remove('active'));
+                this.classList.add('active');
+            });
         });
 
-        track.addEventListener('mouseleave', () => {
-            isDown = false;
-            track.style.cursor = 'grab';
-        });
-
-        track.addEventListener('mouseup', () => {
-            isDown = false;
-            track.style.cursor = 'grab';
-        });
-
-        track.addEventListener('mousemove', (e) => {
-            if (!isDown) return;
-            e.preventDefault();
-            const x = e.pageX - track.offsetLeft;
-            const walk = (x - startX) * 2;
-            track.scrollLeft = scrollLeft - walk;
-        });
-
-        // Smooth scroll
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
+        // Nav links
+        document.querySelectorAll('nav a').forEach(link => {
+            link.addEventListener('click', function(e) {
                 e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({ behavior: 'smooth' });
-                }
+                document.querySelectorAll('nav a').forEach(l => l.classList.remove('active'));
+                this.classList.add('active');
             });
         });
     </script>
